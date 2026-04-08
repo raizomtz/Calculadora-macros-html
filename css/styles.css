@@ -636,3 +636,25 @@ body {
     width: 100%;
     font-size: 0.875rem;
 }
+
+/* Logo principal */
+.logo-img-main {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+}
+
+/* Header del menú */
+.menu-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Responsive para móvil */
+@media (max-width: 480px) {
+    .logo-img-main {
+        width: 200px;
+        height: 200px;
+    }
+}
