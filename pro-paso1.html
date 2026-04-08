@@ -10,13 +10,11 @@
     <div class="calculadora-container">
         <div class="calculadora-wrapper">
             
-            <!-- Header -->
             <div class="calc-header">
                 <a href="index.html" class="back-link">← Volver al menú</a>
                 <h1 class="calc-title">
                     Calculadora <span class="calc-title-red">Pro</span>
                 </h1>
-                <!-- Barra de progreso -->
                 <div class="progress-bar">
                     <div class="progress-step active">1</div>
                     <div class="progress-line"></div>
@@ -41,27 +39,25 @@
         </div>
     </div>
 
+    <script src="js/calculadora.js"></script>
     <script>
         function guardarYAvanzar() {
             const peso = document.getElementById('peso').value;
             const grasa = document.getElementById('grasa').value;
 
             if (!peso || !grasa) {
-                alert('Por favor completa todos los campos');
+                mostrarError('Por favor completa todos los campos para continuar.');
                 return;
             }
 
             const grasaNum = parseFloat(grasa);
             if (grasaNum < 5 || grasaNum > 50) {
-                alert('El % de grasa no parece realista (debe estar entre 5% y 50%)');
+                mostrarErrorRango('El % de grasa corporal', 5, 50);
                 return;
             }
 
-            // Guardar en localStorage
             localStorage.setItem('pro_peso', peso);
             localStorage.setItem('pro_grasa', grasa);
-
-            // Avanzar al paso 2
             window.location.href = 'pro-paso2.html';
         }
     </script>

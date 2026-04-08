@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Calculadora Básica - Paso 3 | Fitness Gym</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="calculadora-container">
+        <div class="calculadora-wrapper">
+            
+            <!-- Header -->
+            <div class="calc-header">
+                <a href="index.html" class="back-link">← Volver al menú</a>
+                <h1 class="calc-title">
+                    Calculadora <span class="calc-title-red">Básica</span>
+                </h1>
+                <!-- Barra de progreso -->
+                <div class="progress-bar">
+                    <div class="progress-step done">✓</div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step done">✓</div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step active">3</div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step">4</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Nivel de actividad</label>
+                <select id="actividad" class="form-select">
+                    <option value="sedentario">Sedentario (no entrenas)</option>
+                    <option value="ligero">Ligero (1-2 días gym)</option>
+                    <option value="moderado">Moderado (3-4 días)</option>
+                    <option value="activo">Activo (5-6 días)</option>
+                    <option value="muy_activo">Muy activo (entrenamiento intenso)</option>
+                </select>
+            </div>
+
+            <div class="flex gap-2">
+                <button class="btn-secondary w-1/3" onclick="volver()">Atrás</button>
+                <button class="btn-primary w-2/3" onclick="guardarYAvanzar()">Siguiente</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function guardarYAvanzar() {
+            const actividad = document.getElementById('actividad').value;
+            localStorage.setItem('basica_actividad', actividad);
+            window.location.href = 'basica-paso4.html';
+        }
+
+        function volver() {
+            window.location.href = 'basica-paso2.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Calculadora Básica - Paso 4 | Fitness Gym</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="calculadora-container">
+        <div class="calculadora-wrapper">
+            
+            <!-- Header -->
+            <div class="calc-header">
+                <a href="index.html" class="back-link">← Volver al menú</a>
+                <h1 class="calc-title">
+                    Calculadora <span class="calc-title-red">Básica</span>
+                </h1>
+                <!-- Barra de progreso -->
+                <div class="progress-bar">
+                    <div class="progress-step done">✓</div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step done">✓</div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step done">✓</div>
+                    <div class="progress-line"></div>
+                    <div class="progress-step active">4</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Tu meta</label>
+                <select id="objetivo" class="form-select">
+                    <option value="perder">Perder Grasa (Definición)</option>
+                    <option value="recomposicion">Recomposición (Gana músculo / pierde grasa)</option>
+                    <option value="ganar">Ganar Masa Muscular (Volumen)</option>
+                </select>
+            </div>
+
+            <div class="flex gap-2">
+                <button class="btn-secondary w-1/3" onclick="volver()">Atrás</button>
+                <button class="btn-primary w-2/3" onclick="calcularYAvanzar()">Calcular</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calcularYAvanzar() {
+            const objetivo = document.getElementById('objetivo').value;
+            localStorage.setItem('basica_objetivo', objetivo);
+            
+            // Recuperar todos los datos
+            const genero = localStorage.getItem('basica_genero');
+            const peso = localStorage.getItem('basica_peso');
+            const altura = localStorage.getItem('basica_altura');
+            const edad = localStorage.getItem('basica_edad');
+            const actividad = localStorage.getItem('basica_actividad');
+            
+            // Construir URL con los datos
+            const url = `basica-resultado.html?genero=${genero}&peso=${peso}&altura=${altura}&edad=${edad}&actividad=${actividad}&objetivo=${objetivo}`;
+            window.location.href = url;
+        }
+
+        function volver() {
+            window.location.href = 'basica-paso3.html';
+        }
+    </script>
+</body>
+</html>
