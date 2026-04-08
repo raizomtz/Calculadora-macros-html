@@ -1,0 +1,50 @@
+# Dependencias
+node_modules/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editores de código
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+
+# Archivos de entorno
+.env
+.env.local
+.env.*.local
+
+# Archivos de build
+dist/
+build/
+out/
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Backup files
+*.bak
+*.backup
+
+# Archivos de Windows
+*.exe
+*.dll
+
+# Archivos de Mac
+*.dmg
+*.app
+
+# Archivos de Linux
+*.deb
+*.rpm
+
+# OCultar archivos de configuración personal
+config.local.*
