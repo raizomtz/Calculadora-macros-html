@@ -240,27 +240,10 @@ body {
     margin-top: 0.25rem;
 }
 
-/* Botones */
-.btn-primary {
-    width: 100%;
-    background-color: #dc2626;
-    color: white;
-    font-weight: 700;
-    padding: 1.25rem;
-    border-radius: 1rem;
-    text-transform: uppercase;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    margin-top: 1rem;
-    font-size: 1rem;
-}
-
-.btn-primary:active {
-    transform: scale(0.98);
-}
-
-.btn-secondary {
+/* ============================================
+   BOTONES PARA PASOS CON 2 BOTONES (Atrás + Siguiente)
+   ============================================ */
+.btn-paso-atras {
     background-color: #374151;
     color: white;
     font-weight: 700;
@@ -269,9 +252,106 @@ body {
     border: none;
     cursor: pointer;
     transition: transform 0.2s ease;
+    font-size: 1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.75rem;
+    width: 100%;
 }
 
-.btn-secondary:active {
+.btn-paso-siguiente {
+    background-color: #dc2626;
+    color: white;
+    font-weight: 700;
+    padding: 1rem;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    font-size: 1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.75rem;
+    width: 100%;
+}
+
+.btn-paso-atras:active,
+.btn-paso-siguiente:active {
+    transform: scale(0.98);
+}
+
+/* Contenedor para dos botones */
+.botones-dos {
+    display: flex;
+    gap: 0.5rem;
+    align-items: stretch;
+}
+
+.botones-dos .w-1-3 {
+    width: 33.333%;
+}
+
+.botones-dos .w-2-3 {
+    width: 66.666%;
+}
+
+/* ============================================
+   BOTÓN PRINCIPAL (para pasos con 1 botón)
+   ============================================ */
+.btn-principal {
+    width: 100%;
+    background-color: #dc2626;
+    color: white;
+    font-weight: 700;
+    padding: 1rem;
+    border-radius: 1rem;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    font-size: 1rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.75rem;
+}
+
+.btn-principal:active {
+    transform: scale(0.98);
+}
+
+/* ============================================
+   BOTÓN SECUNDARIO (para resultados - Nueva Estimación)
+   ============================================ */
+.btn-secundario {
+    width: 100%;
+    background-color: transparent;
+    color: #9ca3af;
+    font-weight: 700;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    font-size: 0.875rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.btn-secundario:hover {
+    color: white;
+}
+
+.btn-secundario:active {
     transform: scale(0.98);
 }
 
