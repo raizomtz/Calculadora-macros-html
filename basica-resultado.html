@@ -24,15 +24,15 @@
                     <p class="resultado-unidad">Calorías</p>
                 </div>
 
-                <div class="macro-item blue">
+                <div class="macro-item blue style="cursor: pointer;" onclick="mostrarAlimentos('proteinas')">
                     <span class="macro-label">🥩 Proteínas</span>
                     <b class="macro-value" id="proteinasValor">0g</b>
                 </div>
-                <div class="macro-item green">
+                <div class="macro-item green" style="cursor: pointer;" onclick="mostrarAlimentos('carbohidratos')">
                     <span class="macro-label">🍚 Carbohidratos</span>
                     <b class="macro-value" id="carbohidratosValor">0g</b>
                 </div>
-                <div class="macro-item red">
+                <div class="macro-item red" style="cursor: pointer;" onclick="mostrarAlimentos('grasas')">
                     <span class="macro-label">🥑 Grasas</span>
                     <b class="macro-value" id="grasasValor">0g</b>
                 </div>
@@ -139,6 +139,112 @@
                 cerrarModal();
             }
         });
+
+
+// Base de datos de alimentos
+const alimentosDB = {
+    proteinas: {
+        titulo: "🥩 Fuentes de Proteína",
+        alimentos: [
+            { nombre: "Pechuga de pollo", cantidad: "31g", detalle: "por 100g - baja en grasa" },
+            { nombre: "Huevos", cantidad: "7g", detalle: "por unidad - proteína completa" },
+            { nombre: "Pescado (salmón/atún)", cantidad: "25g", detalle: "por 100g - rico en omega-3" },
+            { nombre: "Carne magra (res/cerdo)", cantidad: "26g", detalle: "por 100g - elige cortes magros" },
+            { nombre: "Lentejas/garbanzos", cantidad: "9g", detalle: "por 100g - para vegetarianos" },
+            { nombre: "Yogur griego", cantidad: "10g", detalle: "por 100g - probióticos" },
+            { nombre: "Requesón", cantidad: "11g", detalle: "por 100g - bajo en grasa" },
+            { nombre: "Proteína de suero (whey)", cantidad: "24g", detalle: "por scoop - post-entreno" }
+        ],
+        tips: "💡 Distribuye tu proteína en 4-5 comidas al día para mejor absorción. Aprox 30-40g por comida."
+    },
+    carbohidratos: {
+        titulo: "🍚 Fuentes de Carbohidratos",
+        alimentos: [
+            { nombre: "Arroz integral", cantidad: "23g", detalle: "por 100g - fibra y energía lenta" },
+            { nombre: "Avena", cantidad: "66g", detalle: "por 100g - ideal para desayuno" },
+            { nombre: "Papa/boniato", cantidad: "20g", detalle: "por 100g - vitaminas y fibra" },
+            { nombre: "Pan integral", cantidad: "41g", detalle: "por 100g - elige 100% integral" },
+            { nombre: "Pasta integral", cantidad: "30g", detalle: "por 100g - energía para entrenar" },
+            { nombre: "Quinoa", cantidad: "21g", detalle: "por 100g - proteína vegetal" },
+            { nombre: "Frutas", cantidad: "15g", detalle: "por pieza - vitaminas y fibra" },
+            { nombre: "Legumbres", cantidad: "20g", detalle: "por 100g - fibra y proteína" }
+        ],
+        tips: "💡 Los carbohidratos son tu principal fuente de energía. Consúmelos antes y después del entrenamiento."
+    },
+    grasas: {
+        titulo: "🥑 Fuentes de Grasas Saludables",
+        alimentos: [
+            { nombre: "Aguacate", cantidad: "15g", detalle: "por 100g - grasas monoinsaturadas" },
+            { nombre: "Nueces/almendras", cantidad: "52g", detalle: "por 100g - omega-3 y vitamina E" },
+            { nombre: "Aceite de oliva", cantidad: "14g", detalle: "por cucharada - corazón saludable" },
+            { nombre: "Salmón", cantidad: "13g", detalle: "por 100g - omega-3" },
+            { nombre: "Semillas de chía", cantidad: "31g", detalle: "por 100g - fibra y omega-3" },
+            { nombre: "Mantequilla de maní", cantidad: "8g", detalle: "por cucharada - proteína vegetal" },
+            { nombre: "Queso", cantidad: "33g", detalle: "por 100g - elige versiones bajas en grasa" },
+            { nombre: "Huevos (yema)", cantidad: "5g", detalle: "por unidad - vitaminas liposolubles" }
+        ],
+        tips: "💡 Las grasas saludables son esenciales para tus hormonas. Prioriza fuentes naturales como aguacate y frutos secos."
+    }
+};
+
+function mostrarAlimentos(tipo) {
+    const data = alimentosDB[tipo];
+    if (!data) return;
+
+    // Crear modal
+    const modal = document.createElement('div');
+    modal.className = 'modal-alimentos-overlay';
+    modal.id = 'modalAlimentos';
+    
+    let alimentosHTML = '';
+    for (const item of data.alimentos) {
+        alimentosHTML += `
+            <div class="alimento-item">
+                <div class="alimento-nombre">${item.nombre}</div>
+                <div class="alimento-info">
+                    <div class="alimento-cantidad">${item.cantidad}</div>
+                    <div class="alimento-detalle">${item.detalle}</div>
+                </div>
+            </div>
+        `;
+    }
+    
+    modal.innerHTML = `
+        <div class="modal-alimentos-content">
+            <div class="modal-alimentos-header">
+                <div class="modal-alimentos-title">${data.titulo}</div>
+                <button class="modal-alimentos-close" onclick="cerrarModalAlimentos()">✕</button>
+            </div>
+            <div class="modal-alimentos-body">
+                ${alimentosHTML}
+                <div class="alimento-tip">
+                    <span>📌 Tip nutricional:</span><br>
+                    ${data.tips}
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    document.body.style.overflow = 'hidden';
+    
+    // Cerrar al hacer clic fuera
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            cerrarModalAlimentos();
+        }
+    });
+}
+
+function cerrarModalAlimentos() {
+    const modal = document.getElementById('modalAlimentos');
+    if (modal) {
+        modal.remove();
+        document.body.style.overflow = 'auto';
+    }
+}
+        
     </script>
+    
 </body>
 </html>
